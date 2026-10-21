@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Салон красоты Минск | MAZHORKA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-light: #141414;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #997a00;
+            --text: #e0e0e0;
+            --text-muted: #888;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 500; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .logo { display: flex; align-items: center; gap: 15px; font-family: var(--font-serif); font-size: 24px; color: var(--gold); letter-spacing: 2px; }
+        .logo-icon { width: 40px; height: 40px; border: 1px solid var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        nav { display: flex; gap: 30px; }
+        nav a { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); }
+        nav a:hover { color: var(--gold); }
+        .header-contact { text-align: right; }
+        .header-contact a { color: var(--gold); font-weight: 500; font-size: 16px; }
+        .header-contact p { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; position: relative; background: radial-gradient(circle at center, rgba(20,20,20,1) 0%, rgba(10,10,10,1) 100%);
+            padding: 0 20px;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover; background-position: center; opacity: 0.15; z-index: 0;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .hero-subtitle { color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 12px; margin-bottom: 20px; display: block; }
+        .hero h1 { font-size: 64px; line-height: 1.1; margin-bottom: 30px; color: #fff; }
+        .hero h1 span { color: var(--gold); font-style: italic; }
+        .hero p { font-size: 16px; color: var(--text-muted); margin-bottom: 40px; letter-spacing: 1px; }
+        .btn {
+            display: inline-block; padding: 16px 40px; border: 1px solid var(--gold); background: transparent;
+            color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; cursor: pointer;
+            transition: 0.4s; font-weight: 500; text-align: center;
+        }
+        .btn:hover { background: var(--gold); color: var(--bg); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+        .btn-filled { background: var(--gold); color: var(--bg); }
+        .btn-filled:hover { background: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+
+        /* --- SECTIONS COMMON --- */
+        section { padding: 100px 5%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 42px; color: var(--gold); margin-bottom: 10px; }
+        .section-title p { color: var(--text-muted); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* --- SERVICES --- */
+        .services { background: var(--bg); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .service-card { background: var(--bg-light); padding: 40px 30px; border: 1px solid rgba(212, 175, 55, 0.2); text-align: center; transition: 0.4s; }
+        .service-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .service-card h3 { font-size: 24px; color: #fff; margin-bottom: 15px; }
+        .service-card p { font-size: 13px; color: var(--text-muted); }
+
+        /* --- MASTERS --- */
+        .masters { background: var(--bg-light); }
+        .masters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .master-card { background: var(--bg); text-align: center; padding: 30px 20px; border: 1px solid rgba(212, 175, 55, 0.1); transition: 0.3s; }
+        .master-card:hover { border-color: var(--gold); }
+        .master-img { width: 150px; height: 150px; margin: 0 auto 20px; border-radius: 50%; border: 2px solid var(--gold); padding: 5px; object-fit: cover; background: #222; }
+        .master-card h3 { font-size: 26px; color: var(--gold); margin-bottom: 5px; }
+        .master-role { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text); margin-bottom: 15px; display: block; }
+        .master-desc { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+
+        /* --- PRICES --- */
+        .prices { background: var(--bg); max-width: 800px; margin: 0 auto; }
+        .price-list { background: var(--bg-light); padding: 40px; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .price-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px dashed rgba(255,255,255,0.1); font-size: 15px; }
+        .price-item:last-child { border-bottom: none; }
+        .price-name { color: var(--text); }
+        .price-value { color: var(--gold); font-weight: 500; font-family: var(--font-serif); font-size: 18px; }
+
+        /* --- BOOKING (ФОРМА) --- */
+        .booking { background: url('https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?q=80&w=1920&auto=format&fit=crop') center/cover fixed; position: relative; }
+        .booking::before { content: ''; position: absolute; inset: 0; background: rgba(10, 10, 10, 0.9); }
+        .booking-container { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(10px); padding: 50px; border: 1px solid var(--gold); }
+        .booking-container h2 { text-align: center; font-size: 36px; color: var(--gold); margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 15px; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #fff; font-family: var(--font-sans); font-size: 14px; outline: none; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus { border-color: var(--gold); }
+        .form-group select option { background: var(--bg); color: #fff; }
+        .booking-container .btn { width: 100%; margin-top: 10px; }
+
+        /* --- CONTACTS & FOOTER --- */
+        footer { padding: 60px 5% 30px; background: var(--bg); border-top: 1px solid rgba(212, 175, 55, 0.2); text-align: center; }
+        .footer-contacts { display: flex; justify-content: center; gap: 50px; margin-bottom: 40px; flex-wrap: wrap; }
+        .footer-contacts div h4 { color: var(--gold); font-size: 18px; margin-bottom: 10px; }
+        .footer-contacts div p, .footer-contacts div a { color: var(--text-muted); font-size: 14px; }
+        .footer-contacts div a:hover { color: var(--gold); }
+        .copyright { color: #444; font-size: 12px; margin-top: 30px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            nav { display: none; }
+            .hero h1 { font-size: 42px; }
+            .footer-contacts { flex-direction: column; gap: 30px; }
+            .booking-container { padding: 30px 20px; }
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                </svg>
+            </div>
+            MAZHORKA
+        </div>
+        <nav>
+            <a href="#services">Услуги</a>
+            <a href="#masters">Мастера</a>
+            <a href="#prices">Прайс</a>
+            <a href="#booking">Запись</a>
+        </nav>
+        <div class="header-contact">
+            <a href="tel:+375445110880">+375 (44) 511-08-80</a>
+            <p>Ежедневно 10:00 - 22:00</p>
+        </div>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-subtitle">Салон красоты Минск</span>
+            <h1>Научим тебя ценить<br>себя <span>по-настоящему</span></h1>
+            <p>Волосы • Ногти • Брови • Ресницы • Перманент • Депиляция • Массаж</p>
+            <a href="#booking" class="btn btn-filled">Записаться онлайн</a>
+        </div>
+    </section>
+
+    <!-- УСЛУГИ -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Наши услуги</h2>
+            <p>Полный спектр красоты и ухода</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Волосы</h3>
+                <p>Стрижки, сложные окрашивания, уходы и преображение. Работаем с лучшими брендами.</p>
+            </div>
+            <div class="service-card">
+                <h3>Ногти</h3>
+                <p>Комбинированный и аппаратный маникюр, педикюр, наращивание и дизайн.</p>
+            </div>
+            <div class="service-card">
+                <h3>Брови и Ресницы</h3>
+                <p>Архитектура бровей, ламинирование, наращивание ресниц от классики до мега-объема.</p>
+            </div>
+            <div class="service-card">
+                <h3>Перманентный макияж</h3>
+                <p>Естественность и четкая графика. Исправление неудачных работ.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- МАСТЕРА (Используем имена с фото) -->
+    <section class="masters" id="masters">
+        <div class="section-title">
+            <h2>Наши мастера</h2>
+            <p>Профессионалы с огромным опытом</p>
+        </div>
+        <div class="masters-grid">
+            
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/maria.jpg -->
+                <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=400&auto=format&fit=crop" alt="Мария" class="master-img">
+                <h3>Мария</h3>
+                <span class="master-role">Мастер маникюра и педикюра</span>
+                <p class="master-desc">Опыт 7 лет. Комбинированный и аппаратный маникюр. Любитель педикюра и френча. Всегда поддержит диалог.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/marina.jpg -->
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop" alt="Марина" class="master-img">
+                <h3>Марина</h3>
+                <span class="master-role">Парикмахер-стилист</span>
+                <p class="master-desc">Опыт более 25 лет. Все виды стрижек и окрашиваний. Хим. завивки и прикорневой объем. Кардинально меняет людей.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/tatiana_romanovich.jpg -->
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=400&auto=format&fit=crop" alt="Татьяна Романович" class="master-img">
+                <h3>Татьяна Романович</h3>
+                <span class="master-role">Парикмахер-универсал</span>
+                <p class="master-desc">Опыт более 20 лет. Королева биозавивков. Любые стрижки и все виды окрашивания.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/ekaterina.jpg -->
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&auto=format&fit=crop" alt="Екатерина" class="master-img">
+                <h3>Екатерина</h3>
+                <span class="master-role">Мастер перманента, Бровист</span>
+                <p class="master-desc">Опыт 5 лет. Комплекс ресницы и брови за час. От натурального перманента до четкой графики.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/darya.jpg -->
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop" alt="Дарья Китай" class="master-img">
+                <h3>Дарья Китай</h3>
+                <span class="master-role">Мастер маникюра и педикюра</span>
+                <p class="master-desc">Опыт 9 лет. Педикюр за час. Королева френча. Работает за 1,30 - 2 часа.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/svetlana.jpg -->
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Светлана" class="master-img">
+                <h3>Светлана</h3>
+                <span class="master-role">Парикмахер-универсал</span>
+                <p class="master-desc">Опыт 23 года. Преподаватель по стрижкам и сложным техникам. Технолог бренда Kapous.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/karina.jpg -->
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=400&auto=format&fit=crop" alt="Карина" class="master-img">
+                <h3>Карина</h3>
+                <span class="master-role">Мастер маникюра и педикюра</span>
+                <p class="master-desc">Опыт более 15 лет. Богиня форм. Все дизайны. Мастер про тишину и покой.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/anastasia.jpg -->
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=400&auto=format&fit=crop" alt="Анастасия Угвария" class="master-img">
+                <h3>Анастасия Угвария</h3>
+                <span class="master-role">Мастер по наращиванию ресниц</span>
+                <p class="master-desc">Опыт 2 года. Бережно. Дорого. Надежно. От классики до мега объема.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/nadezhda.jpg -->
+                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=400&auto=format&fit=crop" alt="Надежда" class="master-img">
+                <h3>Надежда</h3>
+                <span class="master-role">Мастер маникюра и педикюра</span>
+                <p class="master-desc">Опыт более 12 лет. Королева педикюра. Работает за 1,30 - 2 часа.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/inessa.jpg -->
+                <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?q=80&w=400&auto=format&fit=crop" alt="Инесса" class="master-img">
+                <h3>Инесса</h3>
+                <span class="master-role">Парикмахер-универсал</span>
+                <p class="master-desc">Опыт более 20 лет. Укладки, мелирование, контуринг, балаяж. Мастер, который слышит желания вашей души.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/olga.jpg -->
+                <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=400&auto=format&fit=crop" alt="Ольга" class="master-img">
+                <h3>Ольга</h3>
+                <span class="master-role">Мастер по наращиванию ресниц</span>
+                <p class="master-desc">Опыт более 7 лет. Внимательна к каждой детали. Индивидуальный подход.</p>
+            </div>
+
+            <div class="master-card">
+                <!-- ЗАМЕНИТЬ НА ФОТО: images/tatiana_tolstaya.jpg -->
+                <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=400&auto=format&fit=crop" alt="Татьяна Толстая" class="master-img">
+                <h3>Татьяна Толстая</h3>
+                <span class="master-role">Парикмахер-универсал</span>
+                <p class="master-desc">Опыт 18 лет. Самые быстрые стрижки. Мелирование и окрашивания.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ПРАЙС-ЛИСТ (Для демонстрации) -->
+    <section class="prices" id="prices">
+        <div class="section-title">
+            <h2>Популярные услуги</h2>
+            <p>Пример прайс-листа</p>
+        </div>
+        <div class="price-list">
+            <div class="price-item">
+                <span class="price-name">Женская стрижка + укладка</span>
+                <span class="price-value">от 80 BYN</span>
+            </div>
+            <div class="price-item">
+                <span class="price-name">Сложное окрашивание (Airtouch / Балаяж)</span>
+                <span class="price-value">от 250 BYN</span>
+            </div>
+            <div class="price-item">
+                <span class="price-name">Маникюр с покрытием (аппаратный)</span>
+                <span class="price-value">от 60 BYN</span>
+            </div>
+            <div class="price-item">
+                <span class="price-name">Педикюр с покрытием</span>
+                <span class="price-value">от 75 BYN</span>
+            </div>
+            <div class="price-item">
+                <span class="price-name">Наращивание ресниц (2D)</span>
+                <span class="price-value">от 70 BYN</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОНЛАЙН-ЗАПИСЬ -->
+    <section class="booking" id="booking">
+        <div class="booking-container">
+            <h2>Записаться онлайн</h2>
+            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Спасибо! Ваша заявка отправлена. Администратор свяжется с вами.');">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" placeholder="Как к вам обращаться?" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+375 (XX) XXX-XX-XX" required>
+                </div>
+                <div class="form-group">
+                    <label for="master">Выберите мастера</label>
+                    <select id="master" name="master" required>
+                        <option value="">-- Любой мастер --</option>
+                        <option value="marina">Марина (Стрижки)</option>
+                        <option value="tatiana">Татьяна Р. (Окрашивание)</option>
+                        <option value="ekaterina">Екатерина (Перманент/Брови)</option>
+                        <option value="darya">Дарья (Маникюр/Педикюр)</option>
+                        <option value="anastasia">Анастасия (Ресницы)</option>
+                        <option value="svetlana">Светлана (Стрижки)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="service">Услуга</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- Выберите услугу --</option>
+                        <option value="hair">Стрижка / Окрашивание</option>
+                        <option value="nails">Маникюр / Педикюр</option>
+                        <option value="brows">Брови / Ресницы</option>
+                        <option value="permanent">Перманентный макияж</option>
+                        <option value="massage">Массаж / Косметология</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-filled">Отправить заявку</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ / КОНТАКТЫ -->
+    <footer id="contacts">
+        <div class="logo" style="justify-content: center; margin-bottom: 30px;">
+            <div class="logo-icon">
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                </svg>
+            </div>
+            MAZHORKA
+        </div>
+        
+        <div class="footer-contacts">
+            <div>
+                <h4>Адрес</h4>
+                <p>г. Минск, ул. Притыцкого, 91</p>
+                <p style="font-size: 12px; color: #555; margin-top: 5px;">м. Каменная горка</p>
+            </div>
+            <div>
+                <h4>Телефон</h4>
+                <a href="tel:+375445110880">+375 (44) 511-08-80</a>
+            </div>
+            <div>
+                <h4>Режим работы</h4>
+                <p>Ежедневно с 10:00 до 22:00</p>
+            </div>
+            <div>
+                <h4>Соцсети</h4>
+                <a href="https://instagram.com/mazhorka_image" target="_blank">Instagram: @mazhorka_image</a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2024 Салон красоты MAZHORKA. Все права защищены.
+        </div>
+    </footer>
+
+</body>
+</html>
